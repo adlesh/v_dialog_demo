@@ -3,19 +3,18 @@ import os
 import ui
 
 const (
-	win_width = 208 
+	win_width = 208
 	win_height = 46
 )
 
 struct App {
 mut:
-	counter  &ui.TextBox
-	window   &ui.Window
+	counter &ui.TextBox
+	window  &ui.Window
 }
 
 fn main() {
 	mut app := &App{}
-	
 	window := ui.new_window({
 		width: win_width
 		height: win_height
@@ -49,13 +48,12 @@ fn main() {
 
 fn open_click(app mut App) {
 	config := &v_dialog.FileDialogConfig{
-						path: os.getwd()
-						mode: .open
-						types: 'Images | *.bmp; *.png | All Files | *.*'
-						callback: open_file
-					}
-					
-	dialog := v_dialog.new_filedialog(config)					
+		path: os.getwd()
+		mode: .open
+		types: 'Images | *.bmp; *.png | All Files | *.*'
+		callback: open_file
+	}
+	dialog := v_dialog.new_filedialog(config)
 }
 
 fn save_click(app mut App) {
@@ -65,7 +63,6 @@ fn save_click(app mut App) {
 		types: 'Images | *.bmp; *.png | All Files | *.*'
 		callback: save_file
 	}
-	
 	dialog := v_dialog.new_filedialog(config)
 }
 
@@ -81,11 +78,11 @@ fn save_file(d mut v_dialog.FileDialog) {
 
 fn confirm_click(app mut App) {
 	dialog := v_dialog.new_confirmdialog({
-		confirm_click: btn_confirm_click,
-		decline_click: btn_decline_click,
-		title: 'Confirm?',
-		confirm_text: 'Confirm',
-		decline_text: 'Decline',
+		confirm_click: btn_confirm_click
+		decline_click: btn_decline_click
+		title: 'Confirm?'
+		confirm_text: 'Confirm'
+		decline_text: 'Decline'
 		label: 'Are you sure you want to continue?'
 	})
 }
